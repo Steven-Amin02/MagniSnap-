@@ -1,0 +1,11 @@
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\bin\Debug\MagniSnap.exe.config
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\bin\Debug\MagniSnap.exe
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\bin\Debug\MagniSnap.pdb
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.csproj.AssemblyReference.cache
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.MainForm.resources
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\intelligent_scissors.Properties.Resources.resources
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.csproj.GenerateResource.cache
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.csproj.CoreCompileInputs.cache
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.exe
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.pdb
+C:\Users\Youssef Elshemy\Documents\Projects\MagniSnap-Algorithm\Project Description & Template\MagniSnap Startup Code\[TEMPLATE] MagniSnap\MagniSnap\obj\Debug\MagniSnap.exe.config

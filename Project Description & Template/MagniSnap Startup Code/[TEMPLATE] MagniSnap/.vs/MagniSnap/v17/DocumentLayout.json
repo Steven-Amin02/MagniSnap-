@@ -1,9 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Algorithms\\Project\\Template\\MagniSnap\\",
+  "WorkspaceRootPath": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|d:\\algorithms\\project\\template\\magnisnap\\magnisnap\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|c:\\users\\youssef elshemy\\documents\\projects\\magnisnap-algorithm\\project description \u0026 template\\magnisnap startup code\\[template] magnisnap\\magnisnap\\graph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|solutionrelative:magnisnap\\graph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\magnisnap\\imagetoolkit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|solutionrelative:magnisnap\\imagetoolkit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\magnisnap\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B478A375-640C-4194-84B4-01437585F941}|MagniSnap\\MagniSnap.csproj|solutionrelative:magnisnap\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -19,14 +27,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Graph.cs",
+              "DocumentMoniker": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\Graph.cs",
+              "RelativeDocumentMoniker": "MagniSnap\\Graph.cs",
+              "ToolTip": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\Graph.cs",
+              "RelativeToolTip": "MagniSnap\\Graph.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwDgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T12:32:39.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ImageToolkit.cs",
+              "DocumentMoniker": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\ImageToolkit.cs",
+              "RelativeDocumentMoniker": "MagniSnap\\ImageToolkit.cs",
+              "ToolTip": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\ImageToolkit.cs",
+              "RelativeToolTip": "MagniSnap\\ImageToolkit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-04T11:17:56.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "D:\\Algorithms\\Project\\Template\\MagniSnap\\MagniSnap\\mainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\mainForm.cs",
               "RelativeDocumentMoniker": "MagniSnap\\mainForm.cs",
-              "ToolTip": "D:\\Algorithms\\Project\\Template\\MagniSnap\\MagniSnap\\mainForm.cs [Design]",
+              "ToolTip": "C:\\Users\\Youssef Elshemy\\Documents\\Projects\\MagniSnap-Algorithm\\Project Description \u0026 Template\\MagniSnap Startup Code\\[TEMPLATE] MagniSnap\\MagniSnap\\mainForm.cs [Design]",
               "RelativeToolTip": "MagniSnap\\mainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T19:24:07.993Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-26T19:24:07.993Z"
             }
           ]
         }
