@@ -1,0 +1,23 @@
+name: .NET Framework Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest  # IMPORTANT
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln"
+
+    - name: Build solution
+      run: msbuild "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln" /p:Configuration=Release
