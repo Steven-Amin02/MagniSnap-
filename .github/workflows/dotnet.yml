@@ -1,4 +1,4 @@
-name: .NET
+name: .NET Framework Build
 
 on:
   push:
@@ -8,18 +8,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # IMPORTANT
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
-    - name: Restore dependencies
-      run: dotnet restore "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln"
+    - name: Restore NuGet packages
+      run: nuget restore "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln"
 
-    - name: Build
-      run: dotnet build "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln" --no-restore
+    - name: Build solution
+      run: msbuild "Project Description & Template/MagniSnap Startup Code/[TEMPLATE] MagniSnap/MagniSnap.sln" /p:Configuration=Release
