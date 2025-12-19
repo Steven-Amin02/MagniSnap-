@@ -85,7 +85,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 53);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(87, 623);
+            this.panel1.Size = new System.Drawing.Size(76, 623);
             this.panel1.TabIndex = 0;
             // 
             // indicator_pnl
@@ -94,7 +94,7 @@
             this.indicator_pnl.Location = new System.Drawing.Point(0, 120);
             this.indicator_pnl.Margin = new System.Windows.Forms.Padding(2);
             this.indicator_pnl.Name = "indicator_pnl";
-            this.indicator_pnl.Size = new System.Drawing.Size(10, 64);
+            this.indicator_pnl.Size = new System.Drawing.Size(9, 64);
             this.indicator_pnl.TabIndex = 3;
             // 
             // btnLivewire
@@ -109,7 +109,7 @@
             this.btnLivewire.Location = new System.Drawing.Point(0, 184);
             this.btnLivewire.Margin = new System.Windows.Forms.Padding(2);
             this.btnLivewire.Name = "btnLivewire";
-            this.btnLivewire.Size = new System.Drawing.Size(87, 64);
+            this.btnLivewire.Size = new System.Drawing.Size(76, 64);
             this.btnLivewire.TabIndex = 4;
             this.btnLivewire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLivewire.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@
             this.btnArrow.Location = new System.Drawing.Point(0, 120);
             this.btnArrow.Margin = new System.Windows.Forms.Padding(2);
             this.btnArrow.Name = "btnArrow";
-            this.btnArrow.Size = new System.Drawing.Size(87, 64);
+            this.btnArrow.Size = new System.Drawing.Size(76, 64);
             this.btnArrow.TabIndex = 5;
             this.btnArrow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnArrow.UseVisualStyleBackColor = true;
@@ -142,21 +142,22 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(17, 16, 17, 16);
-            this.panel3.Size = new System.Drawing.Size(87, 120);
+            this.panel3.Padding = new System.Windows.Forms.Padding(15, 16, 15, 16);
+            this.panel3.Size = new System.Drawing.Size(76, 120);
             this.panel3.TabIndex = 1;
             // 
             // appLogo
             // 
             this.appLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.appLogo.Image = global::intelligent_scissors.Properties.Resources.scissor_icon;
-            this.appLogo.Location = new System.Drawing.Point(17, 16);
+            this.appLogo.Location = new System.Drawing.Point(15, 16);
             this.appLogo.Margin = new System.Windows.Forms.Padding(2);
             this.appLogo.Name = "appLogo";
-            this.appLogo.Size = new System.Drawing.Size(53, 88);
+            this.appLogo.Size = new System.Drawing.Size(46, 88);
             this.appLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.appLogo.TabIndex = 1;
             this.appLogo.TabStop = false;
+            this.appLogo.Click += new System.EventHandler(this.appLogo_Click);
             // 
             // panel2
             // 
@@ -167,7 +168,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1303, 53);
+            this.panel2.Size = new System.Drawing.Size(1140, 53);
             this.panel2.TabIndex = 1;
             // 
             // panel8
@@ -175,10 +176,10 @@
             this.panel8.Controls.Add(this.splitter1);
             this.panel8.Controls.Add(this.menuStrip1);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(211, 0);
+            this.panel8.Location = new System.Drawing.Point(185, 0);
             this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1092, 53);
+            this.panel8.Size = new System.Drawing.Size(955, 53);
             this.panel8.TabIndex = 3;
             // 
             // splitter1
@@ -201,9 +202,10 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1092, 53);
+            this.menuStrip1.Size = new System.Drawing.Size(955, 53);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -277,16 +279,16 @@
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(211, 53);
+            this.panel7.Size = new System.Drawing.Size(185, 53);
             this.panel7.TabIndex = 2;
             // 
             // appIcon
             // 
             this.appIcon.Image = global::intelligent_scissors.Properties.Resources.scissor_icon;
-            this.appIcon.Location = new System.Drawing.Point(13, 9);
+            this.appIcon.Location = new System.Drawing.Point(11, 9);
             this.appIcon.Margin = new System.Windows.Forms.Padding(2);
             this.appIcon.Name = "appIcon";
-            this.appIcon.Size = new System.Drawing.Size(37, 35);
+            this.appIcon.Size = new System.Drawing.Size(32, 35);
             this.appIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.appIcon.TabIndex = 3;
             this.appIcon.TabStop = false;
@@ -296,7 +298,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(61, 14);
+            this.label1.Location = new System.Drawing.Point(53, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 23);
@@ -308,10 +310,10 @@
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(87, 53);
+            this.panel4.Location = new System.Drawing.Point(76, 53);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1216, 623);
+            this.panel4.Size = new System.Drawing.Size(1064, 623);
             this.panel4.TabIndex = 2;
             // 
             // panel6
@@ -322,14 +324,14 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1019, 623);
+            this.panel6.Size = new System.Drawing.Size(892, 623);
             this.panel6.TabIndex = 19;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // mainPictureBox
             // 
             this.mainPictureBox.Location = new System.Drawing.Point(4, 6);
-            this.mainPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.mainPictureBox.Name = "mainPictureBox";
             this.mainPictureBox.Size = new System.Drawing.Size(500, 500);
             this.mainPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -350,10 +352,10 @@
             this.panel5.Controls.Add(this.txtMousePosY);
             this.panel5.Controls.Add(this.txtHeight);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(1019, 0);
+            this.panel5.Location = new System.Drawing.Point(892, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(197, 623);
+            this.panel5.Size = new System.Drawing.Size(172, 623);
             this.panel5.TabIndex = 18;
             // 
             // label3
@@ -361,7 +363,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(70, 133);
+            this.label3.Location = new System.Drawing.Point(61, 133);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 21);
@@ -373,7 +375,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label6.Location = new System.Drawing.Point(23, 49);
+            this.label6.Location = new System.Drawing.Point(20, 49);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 21);
@@ -385,7 +387,7 @@
             this.position.AutoSize = true;
             this.position.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.position.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.position.Location = new System.Drawing.Point(69, 100);
+            this.position.Location = new System.Drawing.Point(60, 100);
             this.position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.position.Name = "position";
             this.position.Size = new System.Drawing.Size(28, 21);
@@ -397,7 +399,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(29, 16);
+            this.label5.Location = new System.Drawing.Point(25, 16);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 21);
@@ -410,11 +412,11 @@
             this.txtMousePosX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMousePosX.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMousePosX.ForeColor = System.Drawing.Color.White;
-            this.txtMousePosX.Location = new System.Drawing.Point(107, 98);
-            this.txtMousePosX.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMousePosX.Location = new System.Drawing.Point(94, 98);
+            this.txtMousePosX.Margin = new System.Windows.Forms.Padding(4);
             this.txtMousePosX.Name = "txtMousePosX";
             this.txtMousePosX.ReadOnly = true;
-            this.txtMousePosX.Size = new System.Drawing.Size(74, 27);
+            this.txtMousePosX.Size = new System.Drawing.Size(65, 27);
             this.txtMousePosX.TabIndex = 20;
             // 
             // txtWidth
@@ -423,11 +425,11 @@
             this.txtWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtWidth.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWidth.ForeColor = System.Drawing.Color.White;
-            this.txtWidth.Location = new System.Drawing.Point(107, 13);
-            this.txtWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWidth.Location = new System.Drawing.Point(94, 13);
+            this.txtWidth.Margin = new System.Windows.Forms.Padding(4);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.ReadOnly = true;
-            this.txtWidth.Size = new System.Drawing.Size(74, 27);
+            this.txtWidth.Size = new System.Drawing.Size(65, 27);
             this.txtWidth.TabIndex = 21;
             // 
             // txtMousePosY
@@ -436,11 +438,11 @@
             this.txtMousePosY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMousePosY.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMousePosY.ForeColor = System.Drawing.Color.White;
-            this.txtMousePosY.Location = new System.Drawing.Point(107, 131);
-            this.txtMousePosY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMousePosY.Location = new System.Drawing.Point(94, 131);
+            this.txtMousePosY.Margin = new System.Windows.Forms.Padding(4);
             this.txtMousePosY.Name = "txtMousePosY";
             this.txtMousePosY.ReadOnly = true;
-            this.txtMousePosY.Size = new System.Drawing.Size(74, 27);
+            this.txtMousePosY.Size = new System.Drawing.Size(65, 27);
             this.txtMousePosY.TabIndex = 18;
             // 
             // txtHeight
@@ -449,19 +451,19 @@
             this.txtHeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtHeight.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHeight.ForeColor = System.Drawing.Color.White;
-            this.txtHeight.Location = new System.Drawing.Point(107, 46);
-            this.txtHeight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHeight.Location = new System.Drawing.Point(94, 46);
+            this.txtHeight.Margin = new System.Windows.Forms.Padding(4);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.ReadOnly = true;
-            this.txtHeight.Size = new System.Drawing.Size(74, 27);
+            this.txtHeight.Size = new System.Drawing.Size(65, 27);
             this.txtHeight.TabIndex = 19;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(46)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(1303, 676);
+            this.ClientSize = new System.Drawing.Size(1140, 676);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);

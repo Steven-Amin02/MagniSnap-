@@ -284,5 +284,130 @@ namespace MagniSnap
         {
 
         }
+
+        private void appLogo_Click(object sender, EventArgs e)
+        {
+            if (ImageMatrix == null)
+            {
+                MessageBox.Show(
+                    "Please open an image first.",
+                    "No Image",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            if (confirmedPath.Count < 3)
+            {
+                MessageBox.Show(
+                    "Please draw a closed path using the Livewire tool before cropping.",
+                    "Invalid Selection",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            if (confirmedPath[0] != confirmedPath[confirmedPath.Count - 1])
+                confirmedPath.Add(confirmedPath[0]);
+
+            RGBPixel[,] cropped = CropPhoto(ImageMatrix, confirmedPath);
+
+            if (cropped == null)
+            {
+                MessageBox.Show(
+                    "Cropping failed.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+            ShowCroppedImage(cropped);
+
+            ImageToolkit.ViewImage(cropped, mainPictureBox);
+            ImageMatrix = cropped;
+
+            confirmedPath.Clear();
+            currentPath.Clear();
+            allAnchorsList.Clear();
+            isGraphConstructed = false;
+            imageGraph = null;
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private RGBPixel[,] CropPhoto(RGBPixel[,] image, List<Point> path)
+        {
+            if (path == null || path.Count < 3)
+                return null;
+
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
+
+            foreach (Point p in path)
+            {
+                if (p.X < minX) minX = p.X;
+                if (p.Y < minY) minY = p.Y;
+                if (p.X > maxX) maxX = p.X;
+                if (p.Y > maxY) maxY = p.Y;
+            }
+
+            int newW = maxX - minX + 1;
+            int newH = maxY - minY + 1;
+
+            RGBPixel[,] result = new RGBPixel[newH, newW];
+
+            bool Inside(int x, int y)
+            {
+                bool inside = false;
+                for (int i = 0, j = path.Count - 1; i < path.Count; j = i++)
+                {
+                    if (((path[i].Y > y) != (path[j].Y > y)) &&
+                        (x < (path[j].X - path[i].X) * (y - path[i].Y) / (double)(path[j].Y - path[i].Y) + path[i].X))
+                        inside = !inside;
+                }
+                return inside;
+            }
+
+            for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                {
+                    if (Inside(x, y))
+                        result[y - minY, x - minX] = image[y, x];
+                    else
+                        result[y - minY, x - minX] = new RGBPixel { red = 0, green = 0, blue = 0 };
+                }
+
+            return result;
+        }
+
+        private void ShowCroppedImage(RGBPixel[,] croppedImage)
+        {
+            Form cropForm = new Form();
+            cropForm.Text = "Cropped Image";
+            cropForm.Width = 800;
+            cropForm.Height = 600;
+
+            PictureBox pb = new PictureBox();
+            pb.Dock = DockStyle.Fill;
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+
+            ImageToolkit.ViewImage(croppedImage, pb);
+
+            cropForm.Controls.Add(pb);
+            cropForm.StartPosition = FormStartPosition.CenterScreen;
+            cropForm.Show();
+        }
+
+
+
+
     }
+
+
 }
