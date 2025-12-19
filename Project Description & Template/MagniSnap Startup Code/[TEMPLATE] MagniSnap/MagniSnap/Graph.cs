@@ -89,8 +89,6 @@ namespace MagniSnap
 
             SimplePriorityQueue<int, double> pq = new SimplePriorityQueue<int, double>();
             pq.Enqueue(startIndex, 0);
-            //MinHeap pq = new MinHeap(size);
-            //pq.Enqueue(startIndex, 0);
 
             while (pq.Count > 0)
             {
@@ -99,9 +97,6 @@ namespace MagniSnap
 
                 // Stop early if we reached the target
                 if (u == targetIndex) break;
-
-                // Skip outdated entries in the heap
-                if (uDist > dist[u]) continue;
 
                 int ux = u % width; // x-coordinate
                 int uy = u / width; // y-coordinate
@@ -291,165 +286,5 @@ namespace MagniSnap
             }
             return fullPath;
         }
-
-        // INTERNAL HELPER CLASS: MIN HEAP
-        private class MinHeap
-        {
-            private int[] indices;
-            private double[] priorities;
-            public int Count { get; private set; }
-
-            public MinHeap(int capacity)
-            {
-                indices = new int[capacity];
-                priorities = new double[capacity];
-                Count = 0;
-            }
-
-            public void Enqueue(int index, double priority)
-            {
-                if (Count == indices.Length) Resize();
-
-                indices[Count] = index;
-                priorities[Count] = priority;
-                HeapifyUp(Count);
-                Count++;
-            }
-
-            public int Dequeue()
-            {
-                if (Count == 0) throw new Exception("Queue empty");
-
-                int result = indices[0];
-                Count--;
-                indices[0] = indices[Count];
-                priorities[0] = priorities[Count];
-                HeapifyDown(0);
-                return result;
-            }
-
-            private void HeapifyUp(int i)
-            {
-                while (i > 0)
-                {
-                    int p = (i - 1) / 2;
-                    if (priorities[p] <= priorities[i]) break;
-                    Swap(i, p);
-                    i = p;
-                }
-            }
-
-            private void HeapifyDown(int i)
-            {
-                while (true)
-                {
-                    int l = 2 * i + 1;
-                    if (l >= Count) break;
-                    int r = l + 1;
-                    int min = l;
-                    if (r < Count && priorities[r] < priorities[l]) min = r;
-
-                    if (priorities[i] <= priorities[min]) break;
-                    Swap(i, min);
-                    i = min;
-                }
-            }
-
-            private void Swap(int i, int j)
-            {
-                int ti = indices[i]; indices[i] = indices[j]; indices[j] = ti;
-                double tp = priorities[i]; priorities[i] = priorities[j]; priorities[j] = tp;
-            }
-
-            private void Resize()
-            {
-                int newSize = indices.Length * 2;
-                Array.Resize(ref indices, newSize);
-                Array.Resize(ref priorities, newSize);
-            }
-        }
     }
 }
-
-
-//public void DijkstraShortestPath(Point anchor)
-//{
-//    // Validate anchor point
-//    if (anchor.X < 0 || anchor.X >= width || anchor.Y < 0 || anchor.Y >= height)
-//        throw new ArgumentOutOfRangeException(nameof(anchor), "Anchor must be inside image bounds.");
-
-
-//    dist = new double[height, width];
-//    parent = new Point[height, width];
-
-//    for (int y = 0; y < height; y++)
-//    {
-//        for (int x = 0; x < width; x++)
-//        {
-//            dist[y, x] = double.MaxValue;
-//            parent[y, x] = new Point(-1, -1);
-//        }
-//    }
-//    dist[anchor.Y, anchor.X] = 0.0;
-
-//    var pq = new SimplePriorityQueue<Point, double>();
-//    pq.Enqueue(anchor, 0.0);
-
-//    int[] dx = { -1, 0, 1, 0 };
-//    int[] dy = { 0, -1, 0, 1 };
-
-//    while (pq.Count > 0)
-//    {
-//        Point current = pq.Dequeue();
-//        double currentDist = dist[current.Y, current.X];
-
-//        for (int dir = 0; dir < 4; dir++)
-//        {
-//            int newX = current.X + dx[dir];
-//            int newY = current.Y + dy[dir];
-
-//            if (newX < 0 || newX >= width || newY < 0 || newY >= height)
-//                continue;
-
-//            double weight;
-//            switch (dir)
-//            {
-
-//                //0 1 2 3 
-//                //1 x x x
-//                //2 x o x
-//                //3 x x x
-//                case 0: // Left
-//                        // edge between (newX,newY) and (current.X,current.Y) — newX = current.X-1
-//                    weight = rightWeights[current.Y, newX];
-//                    break;
-//                case 1: // Up (newY = current.Y - 1)
-//                    weight = bottomWeights[newY, current.X];
-//                    break;
-//                case 2: // Right
-//                    weight = rightWeights[current.Y, current.X];
-//                    break;
-//                case 3: // case 3 Down
-//                    weight = bottomWeights[current.Y, current.X];
-//                    break;
-
-//                default:
-//                    weight = 1e9;
-//                    break;
-//            }
-
-//            double newDist = currentDist + weight;
-//            if (newDist < dist[newY, newX])
-//            {
-//                dist[newY, newX] = newDist;
-//                parent[newY, newX] = current;
-//                Point neighbor = new Point(newX, newY);
-
-//                if (pq.Contains(neighbor))
-//                    pq.UpdatePriority(neighbor, newDist);
-//                else
-//                    pq.Enqueue(neighbor, newDist);
-//            }
-//        }
-//    }
-//}
