@@ -103,10 +103,9 @@ namespace MagniSnap
 
         private void btnLivewire_Click(object sender, EventArgs e)
         {
+            menuButton_Leave(btnArrow, EventArgs.Empty);
             menuButton_Click(sender, e);
-
             mainPictureBox.Cursor = Cursors.Cross;
-
             isLassoEnabled = true;
         }
 
@@ -468,7 +467,35 @@ namespace MagniSnap
                     }
                 }
             }
+        }
 
+        private void mainPictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left || ImageMatrix == null)
+                return;
+
+            menuButton_Click(btnArrow, EventArgs.Empty);
+
+            btnLivewire.BackColor = Color.FromArgb(26, 32, 40);
+
+            bool prevLasso = isLassoEnabled;
+            isLassoEnabled = true;
+
+            mainPictureBox_MouseClick(
+                sender,
+                new MouseEventArgs(
+                    MouseButtons.Left,
+                    1,
+                    e.X,
+                    e.Y,
+                    0
+                )
+            );
+
+            isLassoEnabled = false;
+            currentPath.Clear();
+            currentFreePoint = new Point(-1, -1);
+            mainPictureBox.Cursor = Cursors.Default;
         }
     }
 
