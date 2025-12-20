@@ -86,6 +86,10 @@ namespace MagniSnap
                 allAnchorsList.Clear();
                 currentAnchor = new Point(-1, -1);
                 currentFreePoint = new Point(-1, -1);
+                if (imageGraph != null)
+                {
+                    imageGraph = new Graph(ImageMatrix);
+                }
                 mainPictureBox.Refresh();
             }
         }
@@ -98,6 +102,11 @@ namespace MagniSnap
             allAnchorsList.Clear();
             currentAnchor = new Point(-1, -1);
             currentFreePoint = new Point(-1, -1);
+            if (imageGraph != null)
+            {
+                imageGraph = new Graph(ImageMatrix); 
+                isGraphConstructed = false;
+            }
             mainPictureBox.Refresh();
         }
 
@@ -161,6 +170,32 @@ namespace MagniSnap
                     mainPictureBox.Refresh();
                 }
             }
+            if (e.Button == MouseButtons.Right && ImageMatrix != null)
+            {
+                menuButton_Click(btnArrow, EventArgs.Empty);
+
+                btnLivewire.BackColor = Color.FromArgb(26, 32, 40);
+
+                bool prevLasso = isLassoEnabled;
+                isLassoEnabled = true;
+
+                mainPictureBox_MouseClick(
+                    sender,
+                    new MouseEventArgs(
+                        MouseButtons.Left,
+                        1,
+                        e.X,
+                        e.Y,
+                        0
+                    )
+                );
+
+                isLassoEnabled = false;
+                currentPath.Clear();
+                currentFreePoint = new Point(-1, -1);
+                mainPictureBox.Cursor = Cursors.Default;
+            }
+
         }
         private void mainPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -469,34 +504,6 @@ namespace MagniSnap
             }
         }
 
-        private void mainPictureBox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left || ImageMatrix == null)
-                return;
-
-            menuButton_Click(btnArrow, EventArgs.Empty);
-
-            btnLivewire.BackColor = Color.FromArgb(26, 32, 40);
-
-            bool prevLasso = isLassoEnabled;
-            isLassoEnabled = true;
-
-            mainPictureBox_MouseClick(
-                sender,
-                new MouseEventArgs(
-                    MouseButtons.Left,
-                    1,
-                    e.X,
-                    e.Y,
-                    0
-                )
-            );
-
-            isLassoEnabled = false;
-            currentPath.Clear();
-            currentFreePoint = new Point(-1, -1);
-            mainPictureBox.Cursor = Cursors.Default;
-        }
     }
 
 }
