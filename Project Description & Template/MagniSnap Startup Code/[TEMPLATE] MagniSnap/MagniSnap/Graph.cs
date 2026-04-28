@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace MagniSnap
 {
@@ -20,6 +19,11 @@ namespace MagniSnap
 
         public double[] dist;
         public int[] parent;
+
+        // NEW: Active Window Tracking for Dynamic Expansion
+        public int WindowRadius { get; set; } = 200;
+        private Point lastAnchor = new Point(-1, -1);
+        private int currentMinX = -1, currentMaxX = -1, currentMinY = -1, currentMaxY = -1;
 
         public Graph(RGBPixel[,] image)
         {
@@ -47,7 +51,6 @@ namespace MagniSnap
                     // Right Edge
                     if (x < width - 1)
                     {
-                        // Weight = 1 / Energy. Handle 0 energy (flat color) by giving it a high cost.
                         rightWeights[idx] = (energy.X == 0) ? 1e9 : 1.0 / energy.X;
                     }
                     else
@@ -71,20 +74,57 @@ namespace MagniSnap
         }
 
         // ================= DIJKSTRA =================
-        public void DijkstraShortestPath(Point anchor, Point? stopPoint = null)
+        // UPDATED: Added overrideRadius to allow dynamic expansion triggered by backthrough
+        public void DijkstraShortestPath(Point anchor, Point? stopPoint = null, int? overrideRadius = null)
         {
-            // Validate anchor point
             if (anchor.X < 0 || anchor.X >= width || anchor.Y < 0 || anchor.Y >= height)
                 throw new ArgumentOutOfRangeException(nameof(anchor), "Anchor must be inside image bounds.");
+
+            lastAnchor = anchor;
+            int radius = overrideRadius ?? WindowRadius;
 
             int startIndex = anchor.Y * width + anchor.X;
             int targetIndex = stopPoint.HasValue ? (stopPoint.Value.Y * width + stopPoint.Value.X) : -1;
 
-            for (int i = 0; i < size; i++)
+            int minX = Math.Max(0, anchor.X - radius);
+            int maxX = Math.Min(width - 1, anchor.X + radius);
+            int minY = Math.Max(0, anchor.Y - radius);
+            int maxY = Math.Min(height - 1, anchor.Y + radius);
+
+            // 1. Clear the OLD bounding box to prevent stale paths bleeding over
+            if (currentMinX != -1)
             {
-                dist[i] = double.MaxValue;
-                parent[i] = -1;
+                for (int y = currentMinY; y <= currentMaxY; y++)
+                {
+                    for (int x = currentMinX; x <= currentMaxX; x++)
+                    {
+                        if (x >= 0 && x < width && y >= 0 && y < height)
+                        {
+                            int idx = y * width + x;
+                            dist[idx] = double.MaxValue;
+                            parent[idx] = -1;
+                        }
+                    }
+                }
             }
+
+            // 2. Clear the NEW bounding box
+            for (int y = minY; y <= maxY; y++)
+            {
+                for (int x = minX; x <= maxX; x++)
+                {
+                    int idx = y * width + x;
+                    dist[idx] = double.MaxValue;
+                    parent[idx] = -1;
+                }
+            }
+
+            // Update tracked bounds
+            currentMinX = minX;
+            currentMaxX = maxX;
+            currentMinY = minY;
+            currentMaxY = maxY;
+
             dist[startIndex] = 0;
 
             SimplePriorityQueue<int, double> pq = new SimplePriorityQueue<int, double>();
@@ -95,76 +135,63 @@ namespace MagniSnap
                 int u = pq.Dequeue();
                 double uDist = dist[u];
 
-                // Stop early if we reached the target
                 if (u == targetIndex) break;
 
-                int ux = u % width; // x-coordinate
-                int uy = u / width; // y-coordinate
+                int ux = u % width;
+                int uy = u / width;
 
-                // CHECK NEIGHBORS
                 int v;
                 double weight;
-                // LEFT (u - 1)
-                if (ux > 0)
+
+                if (ux > minX)
                 {
                     v = u - 1;
-                    weight = rightWeights[v]; // Coming from left, weight is stored in v's rightWeights
+                    weight = rightWeights[v];
                     if (uDist + weight < dist[v])
                     {
                         dist[v] = uDist + weight;
                         parent[v] = u;
-                        if(pq.Contains(v))
-                            pq.UpdatePriority(v, dist[v]);
-                        else
-                            pq.Enqueue(v, dist[v]);
+                        if (pq.Contains(v)) pq.UpdatePriority(v, dist[v]);
+                        else pq.Enqueue(v, dist[v]);
                     }
                 }
 
-                // RIGHT (u + 1)
-                if (ux < width - 1)
+                if (ux < maxX)
                 {
                     v = u + 1;
-                    weight = rightWeights[u]; // Moving right, weight is stored in current u
+                    weight = rightWeights[u];
                     if (uDist + weight < dist[v])
                     {
                         dist[v] = uDist + weight;
                         parent[v] = u;
-                        if(pq.Contains(v)) 
-                            pq.UpdatePriority(v, dist[v]);
-                        else
-                            pq.Enqueue(v, dist[v]);
+                        if (pq.Contains(v)) pq.UpdatePriority(v, dist[v]);
+                        else pq.Enqueue(v, dist[v]);
                     }
                 }
 
-                // UP (u - width)
-                if (uy > 0)
+                if (uy > minY)
                 {
                     v = u - width;
-                    weight = bottomWeights[v]; // Coming from top, weight is stored in v's bottomWeights
+                    weight = bottomWeights[v];
                     if (uDist + weight < dist[v])
                     {
                         dist[v] = uDist + weight;
                         parent[v] = u;
-                        if (pq.Contains(v))
-                            pq.UpdatePriority(v, dist[v]);
-                        else
-                            pq.Enqueue(v, dist[v]);
+                        if (pq.Contains(v)) pq.UpdatePriority(v, dist[v]);
+                        else pq.Enqueue(v, dist[v]);
                     }
                 }
 
-                // DOWN (u + width)
-                if (uy < height - 1)
+                if (uy < maxY)
                 {
                     v = u + width;
-                    weight = bottomWeights[u]; // Moving down, weight is stored in current u
+                    weight = bottomWeights[u];
                     if (uDist + weight < dist[v])
                     {
                         dist[v] = uDist + weight;
                         parent[v] = u;
-                        if (pq.Contains(v))
-                            pq.UpdatePriority(v, dist[v]);
-                        else
-                            pq.Enqueue(v, dist[v]);
+                        if (pq.Contains(v)) pq.UpdatePriority(v, dist[v]);
+                        else pq.Enqueue(v, dist[v]);
                     }
                 }
             }
@@ -174,16 +201,28 @@ namespace MagniSnap
         {
             List<Point> path = new List<Point>();
 
-            // Check if target is within bounds
             if (target.X < 0 || target.X >= width || target.Y < 0 || target.Y >= height)
                 return path;
 
+            // ===== DYNAMIC EXPANSION LOGIC =====
+            // If the user's mouse leaves the calculated window, expand it automatically!
+            if (target.X < currentMinX || target.X > currentMaxX ||
+                target.Y < currentMinY || target.Y > currentMaxY)
+            {
+                // Calculate the distance to the target and add a buffer (50 pixels)
+                int targetDistX = Math.Abs(target.X - lastAnchor.X);
+                int targetDistY = Math.Abs(target.Y - lastAnchor.Y);
+                int neededRadius = Math.Max(targetDistX, targetDistY) + 50;
+
+                // Dynamically re-run Dijkstra with the expanded radius to catch up to the mouse
+                DijkstraShortestPath(lastAnchor, null, neededRadius);
+            }
+            // ===================================
+
             int currIndex = target.Y * width + target.X;
 
-            // If unreachable, return empty
             if (dist[currIndex] == double.MaxValue) return path;
 
-            // Reconstruct path
             while (currIndex != -1)
             {
                 path.Add(new Point(currIndex % width, currIndex / width));
@@ -194,9 +233,6 @@ namespace MagniSnap
             return path;
         }
 
-        /// <summary>
-        /// Draws a path on the PictureBox
-        /// </summary>
         public void DrawPath(Graphics g, List<Point> path, PictureBox picBox, Color color, int penWidth)
         {
             if (path == null || path.Count < 2)
@@ -204,14 +240,12 @@ namespace MagniSnap
 
             Pen pen = new Pen(color, penWidth);
 
-            // Convert image coordinates to screen coordinates
             Point[] screenPoints = new Point[path.Count];
             for (int i = 0; i < path.Count; i++)
             {
                 screenPoints[i] = GetScreenCoordinates(path[i], picBox);
             }
 
-            // Draw lines connecting the path points
             for (int i = 0; i < screenPoints.Length - 1; i++)
             {
                 g.DrawLine(pen, screenPoints[i], screenPoints[i + 1]);
@@ -220,9 +254,6 @@ namespace MagniSnap
             pen.Dispose();
         }
 
-        /// <summary>
-        /// Draws a point (circle) on the PictureBox
-        /// </summary>
         public void DrawPoint(Graphics g, Point imagePoint, PictureBox picBox, Color color, int radius)
         {
             Point screenPoint = GetScreenCoordinates(imagePoint, picBox);
@@ -236,10 +267,6 @@ namespace MagniSnap
             brush.Dispose();
         }
 
-        /// <summary>
-        /// Converts image coordinates to screen coordinates for drawing
-        /// Returns coordinates relative to PictureBox
-        /// </summary>
         public Point GetScreenCoordinates(Point imagePoint, PictureBox picBox)
         {
             if (picBox.Image == null)
@@ -251,7 +278,6 @@ namespace MagniSnap
             }
             else
             {
-                // Calculate scaling factors
                 float scaleX = (float)picBox.Width / picBox.Image.Width;
                 float scaleY = (float)picBox.Height / picBox.Image.Height;
 
@@ -261,7 +287,6 @@ namespace MagniSnap
                 return new Point(screenX, screenY);
             }
         }
-
 
         public List<Point> GenerateConnectedPaths(List<Point> anchors)
         {
@@ -275,7 +300,14 @@ namespace MagniSnap
                 Point start = anchors[i];
                 Point end = anchors[i + 1];
 
+                // Ensure we don't limit the window for the full bonus sequence generation
+                int originalRadius = WindowRadius;
+                WindowRadius = Math.Max(width, height);
+
                 DijkstraShortestPath(start, end);
+
+                WindowRadius = originalRadius;
+
                 List<Point> segment = backthrough(end);
 
                 if (segment.Count > 0)
